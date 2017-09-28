@@ -1,5 +1,5 @@
 # docker-spring-boot-test
-Projeto para testar utilização do docker com Nginx, Vue, Spring Boot e MySQL
+Projeto para testar utilização do docker com Nginx, Vue, Spring Boot e MySQL.
 
 ### Comandos
 Build da imagem do Vue:

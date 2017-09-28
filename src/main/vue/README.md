@@ -1,18 +1,18 @@
 # vue
 
-> Sample with docker, spring boot and mysql
+> Exemplo com docker, nginx, spring boot e mysql
 
-## Build Setup
+### Pontos de atenção
 
 ``` bash
-# install dependencies
+# instalar dependencias
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# rodar localmente, na porta 3000
+npm run dev-local
 
-# build for production with minification
-npm run build
+# para rodar no container, é utilizado o comando:
+npm run dev-container
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Para rodar no container, foi alterado o "devServer.host" no webpack para '0.0.0.0' pois utilizo docker-machine.
