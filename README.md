@@ -1,11 +1,22 @@
 # docker-spring-boot-test
-Projeto para testar utilização do docker com Spring Boot e MySQL
+Projeto para testar utilização do docker com Nginx, Vue, Spring Boot e MySQL
 
-### Subindo
-Fazer o build da imagem:
+### Comandos
+Build da imagem do Vue:
 ```
-docker build -f ./src/main/docker/Dockerfile -t brunosc/docker-spring-boot-test:mysql .
+docker build -f ./src/main/docker/vue.dockerfile -t brunosc/vue-state-cli .
 ```
+
+Build da imagem do nginx:
+```
+docker build -f ./src/main/docker/nginx.dockerfile -t brunosc/nginx-vue-state .
+```
+
+Build da imagem do nginx:
+```
+docker build -f ./src/main/docker/java.dockerfile -t brunosc/docker-spring-boot-test:vue-mysql .
+```
+
 
 Build compose:
 ```
@@ -18,16 +29,5 @@ docker-compose up
 ```
 
 ### Testando
-Acessar http://{HOST}:8080
-* Irá aparecer uma página em branco
-
-Acessar http://{HOST}:8080/seed
-* Irá informar que os dados foram gerados
-
-Acessar novamente http://{HOST}:8080
-* Irá um JSON com os dados gerados
-
-Onde:
-* **brunosc** usuário do docker-hub
-* **docker-spring-boot-test** nome da imagem
-* **mysql** tag da imagem com MySQL
+Acessar http://{HOST}
+* Irá aparecer uma página com dois botões: Atualizar e Gerar Dados.

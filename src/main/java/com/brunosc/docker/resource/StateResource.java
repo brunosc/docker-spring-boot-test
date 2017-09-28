@@ -3,6 +3,7 @@ package com.brunosc.docker.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import com.brunosc.docker.repository.StateRepository;
 
 @RestController
 @RequestMapping(value = "/")
+@CrossOrigin
 public class StateResource {
 
 	@Autowired
@@ -22,8 +24,8 @@ public class StateResource {
 		return repository.findAll();
 	}
 	
-	@RequestMapping(value = "seed", method = RequestMethod.GET)
-	public String findById() {
+	@RequestMapping(method = RequestMethod.POST)
+	public String seed() {
 		
 		State sc = new State("Santa Catarina", "UF");
 		State sp = new State("São Paulo", "SP");

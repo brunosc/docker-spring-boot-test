@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+  nginx:
+    build:
+      dockerfile: ./src/main/docker/nginx.dockerfile
+      context: .
+    image: brunosc/nginx-vue-state
+    container_name: nginx
+    ports:
+      - "80:80"
+    networks:
+      - prod-network
+    depends_on:
+      - "vue1"
+      - "vue2"
+      - "vue3"
+
   mysql:
     image: mysql:5.6
     ports:
@@ -13,9 +28,9 @@ services:
       
   appserver:
     build:
-      dockerfile: ./src/main/docker/Dockerfile
+      dockerfile: ./src/main/docker/java.dockerfile
       context: .
-    image: brunosc/docker-spring-boot-test:mysql
+    image: brunosc/docker-spring-boot-test:vue-mysql
     container_name: appserver-docker-test-1
     ports:
       - "8080:8080"
@@ -31,6 +46,43 @@ services:
       - DATABASE_PORT=3306
       - SPRING_PROFILES_ACTIVE=container
       - DEBUG=true
+      
+  vue1:
+    build:
+      dockerfile: ./src/main/docker/vue.dockerfile
+      context: .
+    image: brunosc/vue-state-cli
+    container_name: vue-state-cli-1
+    ports:
+      - "3000"
+    networks: 
+      - prod-network
+    depends_on:
+      - "appserver"
+  vue2:
+    build:
+      dockerfile: ./src/main/docker/vue.dockerfile
+      context: .
+    image: brunosc/vue-state-cli
+    container_name: vue-state-cli-2
+    ports:
+      - "3000"
+    networks: 
+      - prod-network
+    depends_on:
+      - "appserver"
+  vue3:
+    build:
+      dockerfile: ./src/main/docker/vue.dockerfile
+      context: .
+    image: brunosc/vue-state-cli
+    container_name: vue-state-cli-3
+    ports:
+      - "3000"
+    networks: 
+      - prod-network
+    depends_on:
+      - "appserver"
       
 networks: 
   prod-network:

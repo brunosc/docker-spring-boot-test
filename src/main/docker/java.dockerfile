@@ -1,3 +1,5 @@
+# docker build -f ./src/main/docker/java.dockerfile -t brunosc/docker-spring-boot-test:vue-mysql .
+
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 ADD /target/docker-spring-boot-test.jar app.jar
